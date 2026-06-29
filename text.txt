@@ -1,0 +1,12 @@
+student = {student} ==>>  it gives data at multilevel go
+
+{...student} ==>>  it gives access at first level 
+
+Props in React ==>> Props (Properties) are used to pass data from a parent component to a child component.
+
+destructurinng ==>> make the levels at single/first level or reduce the levels
+
+state ==>>  
+
+Hooks ==>> set of hooks which help to update data of variable and update instantly on web page
+
