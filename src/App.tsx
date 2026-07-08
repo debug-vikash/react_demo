@@ -1,57 +1,44 @@
 import { useState } from 'react'
-import { useEffect } from 'react'
 import './App.css'
-
-
+import Students from './pages/students'
 
 function App() {
- 
-   const [Toggle, setToggle] = useState(true)
-   const [isLoggedIn, setIsLoggedIn] = useState(false)
-   return (
-   <>
-    <button onClick={() => setToggle(!Toggle)}>
-      {Toggle ? <h1>Show Text</h1> : <h1>Hide Text</h1>}
-    </button>
-    {Toggle && <h1>Hello, React!</h1>}
-    {Toggle || isLoggedIn ? <h2>Welcome back!</h2> : <h2>Please log in.</h2>}
+  const [toggle, setToggle] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [count, setCount] = useState(0)
+  // const [name, setName] = useState('')
+  // const [submit, setSubmit] = useState(false)
 
-  </>
-  )
-
- const [count, setCount] = useState(0)
-  const [greet, setGreet] = useState('Hello, React!')
-  const [name, setName] = useState('')
-  const [submit, setSubmit] = useState(false)
   return (
     <>
+      <button onClick={() => setToggle(!toggle)}>
+        {toggle ? <h1>Show Text</h1> : <h1>Hide Text</h1>}
+      </button>
+
+      {toggle && <h1>Hello, Students!</h1>}
+      {toggle || isLoggedIn ? <Students /> : <h2>Please log in.</h2>}
+
       <section id="center">
         <div>
           <h1>Get started</h1>
         </div>
+
         <button
           type="button"
           className="counter"
-          onClick={() => setCount((count) => count + 1)}>
+          onClick={() => setCount((current) => current + 1)}>
           Count
         </button>
-            <>
-            <h1>{count}</h1>
-            </>
 
-          <>
-          <input
-            type="text"
-            value={greet}
-            onChange={(e) => setGreet(e.target.value)}
-          />
-          <h1>{greet}</h1>
-          </>
-        
+        <h1>{count}</h1>
       </section>
 
-      <section id="form">
-        <form>
+      {/* <section id="form">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault()
+            setSubmit(true)
+          }}>
           <label htmlFor="name">Name:</label>
           <input
             type="text"
@@ -65,45 +52,9 @@ function App() {
 
           {submit && <h1>Hello, {name}!</h1>}
         </form>
-
-
-      </section>
-
-    {isLoggedIn ? <h2>Welcome back!</h2> : <h2>Please log in.</h2>}
-
-       
+      </section> */}
     </>
-    
   )
-
-useEffect(() => {
-    async function getUsers() {
-        console.log("Before fetch");
-
-        const response = await fetch("https://jsonplaceholder.typicode.com/users");
-        const data = await response.json();
-
-        console.log(data);
-
-        console.log("After data");
-    }
-
-    getUsers();
-}, []);
-
-
-const std_name = ['Alice', 'Bob', 'Charlie', 'David', 'Eve']
-return (<>
-    {std_name.map((name,idx) => {
-      return <h1 key={idx}>{name}</h1>;
-})}
-</>
-
-
-
-)
 }
-
-
 
 export default App
