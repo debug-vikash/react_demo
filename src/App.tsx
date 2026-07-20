@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import './App.css'
 import Students from './pages/students'
+import useCounter from './hooks/useCounter'
 
 function App() {
   const [toggle, setToggle] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [count, setCount] = useState(0)
-  // const [name, setName] = useState('')
-  // const [submit, setSubmit] = useState(false)
+  const { current: count, increment, decrement, reset } = useCounter(0)
 
   return (
     <>
@@ -20,39 +19,35 @@ function App() {
 
       <section id="center">
         <div>
-          <h1>Get started</h1>
+          <h1>Increase Count</h1>
         </div>
 
         <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((current) => current + 1)}>
+          onClick={increment}>
+          Count
+        </button>
+
+        <h1>{count}</h1>
+        <h1>Decrease Count</h1>
+
+        
+        <button
+          onClick={decrement}>
+          Count
+        </button>
+
+        <h1>{count}</h1>
+
+        <div>
+          <h1>Reset Count</h1>
+        </div>
+        <button
+          onClick={reset}>
           Count
         </button>
 
         <h1>{count}</h1>
       </section>
-
-      {/* <section id="form">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault()
-            setSubmit(true)
-          }}>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <br />
-          <button type="submit">Submit</button>
-
-          {submit && <h1>Hello, {name}!</h1>}
-        </form>
-      </section> */}
     </>
   )
 }
